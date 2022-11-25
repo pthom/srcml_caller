@@ -38,6 +38,8 @@ find_package(pybind11 CONFIG REQUIRED)
 add_subdirectory(external/srcML)
 set(srcml_cpp_caller_dir external/srcml_cpp_caller)
 add_subdirectory(${srcml_cpp_caller_dir})
+add_executable(srcml_cmd_line external/srcml_cmd_line.cpp)
+target_link_libraries(srcml_cmd_line srcml_cpp_caller)
 
 
 #########################################################################

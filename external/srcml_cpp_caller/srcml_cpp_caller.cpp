@@ -22,6 +22,8 @@ std::optional<std::string> to_cpp(
     srcml_set_xml_encoding(encoding_src.c_str());
 
     std::unique_ptr<srcml_archive> archive(srcml_archive_create());
+    srcml_archive_set_src_encoding(archive.get(), encoding_src.c_str());
+    srcml_archive_set_xml_encoding(archive.get(), encoding_xml.c_str());
 
     int status = srcml_archive_read_open_memory(archive.get(), xml_str.c_str(), xml_str.size());
     if (status != SRCML_STATUS_OK)
@@ -51,11 +53,15 @@ std::optional<std::string> to_srcml(
 {
     srcml_set_language("C++");
     srcml_set_src_encoding(encoding_src.c_str());
-    srcml_set_xml_encoding(encoding_src.c_str());
+    srcml_set_xml_encoding(encoding_xml.c_str());
 
     auto archive = srcml_archive_create();
+    srcml_archive_set_src_encoding(archive, encoding_src.c_str());
+    srcml_archive_set_xml_encoding(archive, encoding_xml.c_str());
+
     auto unit = srcml_unit_create(archive);
     srcml_unit_set_language(unit, "C++");
+    srcml_unit_set_src_encoding(unit, encoding_src.c_str());
 
     if (include_positions)
     {
