@@ -1,8 +1,0 @@
-add_library(srcml_cpp_caller srcml_cpp_caller.cpp srcml_cpp_caller.h)
-target_include_directories(srcml_cpp_caller PUBLIC ${CMAKE_CURRENT_LIST_DIR}/..)
-# Under windows, auto __declspec(dllexport)
-if (WIN32)
-    set_target_properties(srcml_cpp_caller PROPERTIES WINDOWS_EXPORT_ALL_SYMBOLS ON)
-endif()
-target_link_libraries(srcml_cpp_caller PUBLIC libsrcml_static)
-target_include_directories(srcml_cpp_caller PRIVATE ${CMAKE_CURRENT_LIST_DIR}/../srcML/src/parser)

@@ -33,25 +33,25 @@ find_package(pybind11 CONFIG REQUIRED)
 
 
 ####################################################
-# Build srcml_cpp_caller Bound C++ library
+# Build libsrcmlcpp_caller Bound C++ library
 ####################################################
 add_subdirectory(external/srcML)
-set(srcml_cpp_caller_dir external/srcml_cpp_caller)
+set(srcml_cpp_caller_dir external/libsrcmlcpp_caller)
 add_subdirectory(${srcml_cpp_caller_dir})
 add_executable(srcml_cmd_line external/srcml_cmd_line.cpp)
-target_link_libraries(srcml_cmd_line srcml_cpp_caller)
+target_link_libraries(srcml_cmd_line libsrcmlcpp_caller)
 
 
 #########################################################################
 # Build python module that provides bindings to the library implot
 #########################################################################
-set(bound_library srcml_cpp_caller)          # The library for which we are building bindings
-set(python_native_module_name _lg_srcml_cpp_caller) # This is the native python module name
-set(python_wrapper_module_name lg_srcml_cpp_caller) # This is the python wrapper around the native module
-set(python_module_sources bindings/module.cpp bindings/pybind_${bound_library}.cpp) # native python module sources
+set(bound_library libsrcmlcpp_caller)          # The library for which we are building bindings
+set(python_native_module_name _srcmlcpp_caller) # This is the native python module name
+set(python_wrapper_module_name srcmlcpp_caller) # This is the python wrapper around the native module
+set(python_module_sources bindings/module.cpp bindings/pybind_srcmlcpp_caller.cpp) # native python module sources
 
 pybind11_add_module(${python_native_module_name} ${python_module_sources})
-target_compile_definitions(_lg_srcml_cpp_caller PRIVATE VERSION_INFO=${PROJECT_VERSION})
+target_compile_definitions(_srcmlcpp_caller PRIVATE VERSION_INFO=${PROJECT_VERSION})
 lg_setup_module(
     ${bound_library}
     ${python_native_module_name}

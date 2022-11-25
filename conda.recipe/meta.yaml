@@ -1,5 +1,5 @@
 package:
-  name: lg-srcml-cpp-caller
+  name: srcmlcpp-caller
   version: 0.0.1
 
 source:
@@ -27,7 +27,7 @@ requirements:
 
 test:
   imports:
-    - lg_srcml_cpp_caller
+    - srcmlcpp_caller
   requires:
     - pytest
   source_files:

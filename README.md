@@ -1,4 +1,4 @@
-# lg_srcml_cpp_caller
+# srcmlcpp_caller
 
 simple bindings for srcML, when used with C++ code.
 

@@ -1,4 +1,4 @@
-#include "srcml_cpp_caller/srcml_cpp_caller.h"
+#include "libsrcmlcpp_caller/libsrcmlcpp_caller.h"
 #include <iostream>
 
 int main()
