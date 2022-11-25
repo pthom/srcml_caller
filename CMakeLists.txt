@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.17)
-project(lg_template VERSION "0.0.1")
+project(srcmlcpp_caller VERSION "0.0.1")
 
 include(lg_cmake_utils/lg_cmake_utils.cmake)
 
