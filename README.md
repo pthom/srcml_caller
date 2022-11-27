@@ -36,3 +36,74 @@ def to_srcml(
 ````
 
 Based on [scikit_build_example](https://github.com/pybind/scikit_build_example) for [litgen](https://github.com/pthom/litgen)
+
+# Install instructions
+
+# Development build instructions
+
+## Install requirements
+
+### Mac
+````
+brew install antlr2 boost cmake libarchive
+````
+
+### Linux
+
+#### Ubuntu
+
+From https://github.com/srcML/Docker/blob/ubuntu_latest/base/Dockerfile
+
+##### Download and install a newer binary version of cmake (cmake 3.24 is required)
+
+For example:
+````
+# This is where cmake will be put
+MY_BIN_DIR=~/bin
+
+# (select your arch below)
+CMAKE_BIN_URL=https://cmake.org/files/v3.25/cmake-3.25.0-linux-x86_64.tar.gz
+# CMAKE_BIN_URL=https://cmake.org/files/v3.25/cmake-3.25.0-linux-aarch64.tar.gz
+curl -L $CMAKE_BIN_URL  > cmake_new.tgz
+tar xvfz cmake_new.tgz
+rm cmake_new.tgz
+echo "export PATH=$MY_BIN_DIR/cmake-3.25.0-linux-aarch64/bin:$PATH" >> ~/.bashrc
+echo "export PATH=$MY_BIN_DIR/cmake-3.25.0-linux-aarch64/bin:$PATH" >> ~/.zshrc
+````
+
+
+````
+sudo apt-get update && sudo apt-get install --no-install-recommends -y \
+    curl \
+    zip \
+    g++ \
+    make \
+    ninja-build \
+    antlr \
+    libantlr-dev \
+    libxml2-dev \
+    libxml2-utils \
+    libxslt1-dev \
+    libarchive-dev \
+    libssl-dev \
+    libcurl4-openssl-dev \
+    cpio \
+    man \
+    file \
+    dpkg-dev
+````
+
+# Build
+````bash
+git submodule update --init
+````
+
+````bash
+python3 -m venv venv
+source venv/bin/activate
+pip install pybind11
+mkdir build
+cd build
+cmake .. -DPYTHON_EXECUTABLE=../venv/bin/python
+````
+
