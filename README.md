@@ -53,11 +53,7 @@ pip install -v .
 
 ### Linux
 
-#### Ubuntu
-
-From https://github.com/srcML/Docker/blob/ubuntu_latest/base/Dockerfile
-
-##### Download and install a newer binary version of cmake (cmake 3.24 is required)
+#### Download and install a newer binary version of cmake (cmake 3.24 is required)
 
 For example:
 ````
@@ -74,6 +70,13 @@ echo "export PATH=$MY_BIN_DIR/cmake-3.25.0-linux-aarch64/bin:$PATH" >> ~/.bashrc
 echo "export PATH=$MY_BIN_DIR/cmake-3.25.0-linux-aarch64/bin:$PATH" >> ~/.zshrc
 ````
 
+#### Install requirements
+
+Follow instructions on srcML repo: https://github.com/srcML/srcML/blob/master/BUILD.md
+
+#### Install requirements for Ubuntu
+
+From https://github.com/srcML/Docker/blob/ubuntu_latest/base/Dockerfile
 
 ````
 sudo apt-get update && sudo apt-get install --no-install-recommends -y \
@@ -94,11 +97,15 @@ sudo apt-get update && sudo apt-get install --no-install-recommends -y \
     dpkg-dev
 ````
 
+You can also run ci_scripts/install_requirements_ubuntu.sh, which does exactly this.
+
+
 # Build
 ````bash
 git submodule update --init
 ````
 
+Unix and MacOS
 ````bash
 python3 -m venv venv
 source venv/bin/activate
@@ -108,3 +115,12 @@ cd build
 cmake .. -DPYTHON_EXECUTABLE=../venv/bin/python
 ````
 
+Windows
+````bash
+python3 -m venv venv
+venv\Scripts\activate
+pip install pybind11
+mkdir build
+cd build
+cmake .. -DPYTHON_EXECUTABLE=c:\FULL\PATH\TO\venv\Scripts\python.exe
+````
