@@ -10,6 +10,10 @@ def test_code():
     // Héloïse
     int a = 1;
     """
-    xml = srcml_caller.to_srcml(code, srcml_caller.CodeLanguage.c_plus_cplus)
-    code2 = srcml_caller.to_cpp(xml)
+    xml = srcml_caller.to_srcml(
+        code, srcml_caller.CodeLanguage.c_plus_cplus,
+        encoding_src="utf-8",
+        encoding_xml="utf-8"
+        )
+    code2 = srcml_caller.to_code(xml, encoding_src="utf-8", encoding_xml="utf-8")
     assert code2 == code
