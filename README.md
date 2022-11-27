@@ -39,14 +39,17 @@ Based on [scikit_build_example](https://github.com/pybind/scikit_build_example) 
 
 # Install instructions
 
+````
+git clone https://github.com/pthom/srcml_caller.git
+cd srcml_caller
+git submodule update --init # will fetch srcML submodule
+pip install -v .
+````
+
 # Development build instructions
 
 ## Install requirements
 
-### Mac
-````
-brew install antlr2 boost cmake libarchive
-````
 
 ### Linux
 
@@ -79,8 +82,6 @@ sudo apt-get update && sudo apt-get install --no-install-recommends -y \
     g++ \
     make \
     ninja-build \
-    antlr \
-    libantlr-dev \
     libxml2-dev \
     libxml2-utils \
     libxslt1-dev \
