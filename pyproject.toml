@@ -6,6 +6,9 @@ requires = [
     "cmake>=3.22",
     "scikit-build>=0.14.1",
     "ninja; platform_system!='Windows'",
+
+    # Draft in order to install windows deps via conan
+    # "conan>=1.5",
 ]
 build-backend = "setuptools.build_meta"
 
