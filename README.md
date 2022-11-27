@@ -2,6 +2,8 @@
 
 simple bindings for srcML, when used with C++ code.
 
+Works on linux and MacOS.
+
 Provides:
 
 ````python
@@ -123,4 +125,37 @@ pip install pybind11
 mkdir build
 cd build
 cmake .. -DPYTHON_EXECUTABLE=c:\FULL\PATH\TO\venv\Scripts\python.exe
+````
+
+# Windows port advices
+
+This project does not work on windows, mainly to srcML dependencies.
+
+A possible strategy would be to:
+
+* Ask users to install and configure conan:
+
+````bash
+pip install conan
+conan profile new default --detect
+````
+
+
+* Use conan when running pip. see pyproject.toml which contains:
+````python
+# Draft in order to install windows deps via conan
+# "conan>=1.5",
+````
+
+(conan has the advantage to be callable from pip, since it is a python package)
+
+* Fill the dependencies in conanfile_win_deps.txt
+
+* Call conan install when CMake is invoked:
+
+````cmake
+    execute_process(COMMAND
+        conan install ${CMAKE_CURRENT_LIST_DIR}/${conanfile} --build=missing
+        RESULT_VARIABLE conan_install_result
+        )
 ````
