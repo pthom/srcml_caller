@@ -6,13 +6,22 @@
 #include <string>
 #include <optional>
 #include <memory>
-
+#include <map>
 
 // inspired from int srcml(const char* input_filename, const char* output_filename)
 // inside libsrcml.cpp
 
 
-std::optional<std::string> to_cpp(
+static std::map<CodeLanguage, std::string> gLanguageTable{
+    { CodeLanguage::C, "C" },
+    { CodeLanguage::CSharp, "C#"},
+    { CodeLanguage::CPlusCplus, "C++"},
+    { CodeLanguage::Java, "Java"},
+    { CodeLanguage::ObjectiveC, "Objective-C"}
+};
+
+
+std::optional<std::string> to_code(
     const std::string& xml_str,
     const std::string& encoding_src,
     const std::string& encoding_xml
@@ -46,6 +55,7 @@ std::optional<std::string> to_cpp(
 
 std::optional<std::string> to_srcml(
     const std::string& cpp_code,
+    CodeLanguage language,
     bool include_positions,
     const std::string& encoding_src,
     const std::string& encoding_xml
@@ -60,7 +70,9 @@ std::optional<std::string> to_srcml(
     srcml_archive_set_xml_encoding(archive, encoding_xml.c_str());
 
     auto unit = srcml_unit_create(archive);
-    srcml_unit_set_language(unit, "C++");
+
+    const char* lang_param = gLanguageTable[language].c_str();
+    srcml_unit_set_language(unit, lang_param);
     srcml_unit_set_src_encoding(unit, encoding_src.c_str());
 
     if (include_positions)

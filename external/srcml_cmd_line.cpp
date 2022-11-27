@@ -16,20 +16,15 @@ int main()
 )";
 
     auto r = to_srcml(
-    code,
+    code, CodeLanguage::CPlusCplus,
     true,
-    "utf-8",
-    "utf-8"
+    "utf-8", "utf-8"
     );
 
     if (r)
         std::cout << r.value() << "\n";
 
-
-    auto r2 = to_cpp(xml,
-                     "utf-8",
-                     "utf-8"
-                     );
+    auto r2 = to_code(xml, "utf-8", "utf-8");
     if (r2)
         std::cout << r2.value() << "\n";
 

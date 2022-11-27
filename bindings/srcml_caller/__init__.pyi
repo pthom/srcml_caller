@@ -10,7 +10,15 @@ import numpy
 ####################    <generated_from:libsrcml_caller.h>    ####################
 
 
-def to_cpp(
+class CodeLanguage(enum.Enum):
+    c = enum.auto()            # (= 0)
+    c_sharp = enum.auto()      # (= 1)
+    c_plus_cplus = enum.auto() # (= 2)
+    java = enum.auto()         # (= 3)
+    objective_c = enum.auto()  # (= 4)
+
+
+def to_code(
     xml_str: str,
     encoding_src: str = "utf-8",
     encoding_xml: str = "utf-8"
@@ -19,7 +27,8 @@ def to_cpp(
 
 
 def to_srcml(
-    cpp_code: str,
+    code: str,
+    language: CodeLanguage,
     include_positions: bool = True,
     encoding_src: str = "utf-8",
     encoding_xml: str = "utf-8"
