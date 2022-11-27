@@ -36,9 +36,7 @@ find_package(pybind11 CONFIG REQUIRED)
 # Build libsrcml_caller Bound C++ library
 ####################################################
 add_subdirectory(external/srcML)
-add_subdirectory(src/libsrcml_caller)
-add_executable(srcml_cmd_line src/srcml_cmd_line.cpp)
-target_link_libraries(srcml_cmd_line libsrcml_caller)
+add_subdirectory(src)
 
 
 #########################################################################
