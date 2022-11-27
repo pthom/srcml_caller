@@ -12,11 +12,19 @@ except ImportError:
 
 from setuptools import find_packages
 
+
+def get_readme():
+    with open("Readme.md") as f:
+        r = f.read()
+    return r
+
+
 setup(
     name="srcml-caller",
-    version="0.0.1",
-    description="srcml-caller, simple bindings for srcML, with C++ code",
-    long_description="...",
+    version="0.1.0",
+    description="srcml_caller, simple python bindings for srcML ",
+    long_description=get_readme(),
+    long_description_content_type="text/markdown",
     author="Pascal Thomet",
     author_email="pthomet@gmail.com",
     url="https://github.com/pthom/srcml_caller",
