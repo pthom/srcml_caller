@@ -14,14 +14,14 @@ from setuptools import find_packages
 
 
 def get_readme():
-    with open("Readme.md") as f:
+    with open("README.md") as f:
         r = f.read()
     return r
 
 
 setup(
     name="srcml-caller",
-    version="0.1.0",
+    version="0.1.1",
     description="srcml_caller, simple python bindings for srcML ",
     long_description=get_readme(),
     long_description_content_type="text/markdown",
