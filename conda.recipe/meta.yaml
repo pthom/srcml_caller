@@ -1,5 +1,5 @@
 package:
-  name: srcmlcpp-caller
+  name: srcml-caller
   version: 0.0.1
 
 source:
@@ -27,7 +27,7 @@ requirements:
 
 test:
   imports:
-    - srcmlcpp_caller
+    - srcml_caller
   requires:
     - pytest
   source_files:

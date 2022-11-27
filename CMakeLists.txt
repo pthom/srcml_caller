@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.17)
-project(srcmlcpp_caller VERSION "0.0.1")
+project(srcml_caller VERSION "0.0.1")
 
 include(lg_cmake_utils/lg_cmake_utils.cmake)
 
@@ -33,25 +33,24 @@ find_package(pybind11 CONFIG REQUIRED)
 
 
 ####################################################
-# Build libsrcmlcpp_caller Bound C++ library
+# Build libsrcml_caller Bound C++ library
 ####################################################
 add_subdirectory(external/srcML)
-set(srcml_cpp_caller_dir external/libsrcmlcpp_caller)
-add_subdirectory(${srcml_cpp_caller_dir})
+add_subdirectory(external/libsrcml_caller)
 add_executable(srcml_cmd_line external/srcml_cmd_line.cpp)
-target_link_libraries(srcml_cmd_line libsrcmlcpp_caller)
+target_link_libraries(srcml_cmd_line libsrcml_caller)
 
 
 #########################################################################
 # Build python module that provides bindings to the library implot
 #########################################################################
-set(bound_library libsrcmlcpp_caller)          # The library for which we are building bindings
-set(python_native_module_name _srcmlcpp_caller) # This is the native python module name
-set(python_wrapper_module_name srcmlcpp_caller) # This is the python wrapper around the native module
-set(python_module_sources bindings/module.cpp bindings/pybind_srcmlcpp_caller.cpp) # native python module sources
+set(bound_library libsrcml_caller)          # The library for which we are building bindings
+set(python_native_module_name _srcml_caller) # This is the native python module name
+set(python_wrapper_module_name srcml_caller) # This is the python wrapper around the native module
+set(python_module_sources bindings/module.cpp bindings/pybind_srcml_caller.cpp) # native python module sources
 
 pybind11_add_module(${python_native_module_name} ${python_module_sources})
-target_compile_definitions(_srcmlcpp_caller PRIVATE VERSION_INFO=${PROJECT_VERSION})
+target_compile_definitions(_srcml_caller PRIVATE VERSION_INFO=${PROJECT_VERSION})
 lg_setup_module(
     ${bound_library}
     ${python_native_module_name}

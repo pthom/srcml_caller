@@ -11,9 +11,9 @@ namespace py = pybind11;
 void py_init_module_lg_srcml_cpp_caller(py::module& m);
 
 
-// This builds the native python module `_srcmlcpp_caller`
-// it will be wrapped in a standard python module `srcmlcpp_caller`
-PYBIND11_MODULE(_srcmlcpp_caller, m)
+// This builds the native python module `_srcml_caller`
+// it will be wrapped in a standard python module `srcml_caller`
+PYBIND11_MODULE(_srcml_caller, m)
 {
     #ifdef VERSION_INFO
     m.attr("__version__") = MACRO_STRINGIFY(VERSION_INFO);
