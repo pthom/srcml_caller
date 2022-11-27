@@ -27,6 +27,10 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
 
+    - name: install ubuntu requirement
+      if: ${{ matrix.platform == 'ubuntu-latest' }}
+      run:  ./ci_scripts/install_requirements_ubuntu.sh
+
     - name: Build and install
       run: pip install --verbose .[test]
 
