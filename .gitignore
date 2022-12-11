@@ -144,3 +144,5 @@ _skbuild/
 cmake-build-*/
 .idea/
 .vscode
+
+/venv*/
