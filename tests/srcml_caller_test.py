@@ -2,7 +2,7 @@ import srcml_caller
 
 
 def test_version():
-    assert srcml_caller.__version__ == "0.0.1"
+    assert srcml_caller.__version__ == "0.1.2"
 
 def test_code():
     import srcml_caller
