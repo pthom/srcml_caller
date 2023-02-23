@@ -21,7 +21,7 @@ def get_readme():
 
 setup(
     name="srcml-caller",
-    version="0.1.2",
+    version="0.1.3",
     description="srcml_caller, simple python bindings for srcML ",
     long_description=get_readme(),
     long_description_content_type="text/markdown",
