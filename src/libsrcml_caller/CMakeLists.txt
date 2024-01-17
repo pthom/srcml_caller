@@ -1,4 +1,4 @@
-add_library(libsrcml_caller libsrcml_caller.cpp libsrcml_caller.h)
+add_library(libsrcml_caller STATIC libsrcml_caller.cpp libsrcml_caller.h)
 target_include_directories(libsrcml_caller PUBLIC ${CMAKE_CURRENT_LIST_DIR}/..)
 # Under windows, auto __declspec(dllexport)
 if (WIN32)
