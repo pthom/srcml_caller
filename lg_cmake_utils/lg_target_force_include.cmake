@@ -1,7 +1,0 @@
-function(lg_target_force_include target include_file)
-    if (MSVC)
-        target_compile_options(${target} PRIVATE /FI${include_file})
-    else()
-        target_compile_options(${target} PRIVATE -include ${include_file})
-    endif()
-endfunction()

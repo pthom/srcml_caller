@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.17)
 project(srcml_caller VERSION "0.1.3")
 
-include(lg_cmake_utils/lg_cmake_utils.cmake)
+include(litgen_cmake/litgen_setup_module.cmake)
 
 set(CMAKE_CXX_STANDARD 20)
 
@@ -49,7 +49,7 @@ set(python_module_sources bindings/module.cpp bindings/pybind_srcml_caller.cpp) 
 
 pybind11_add_module(${python_native_module_name} ${python_module_sources})
 target_compile_definitions(_srcml_caller PRIVATE VERSION_INFO=${PROJECT_VERSION})
-lg_setup_module(
+litgen_setup_module(
     ${bound_library}
     ${python_native_module_name}
     ${python_wrapper_module_name}

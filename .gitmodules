@@ -1,6 +1,3 @@
-[submodule "lg_cmake_utils"]
-	path = lg_cmake_utils
-	url = https://github.com/pthom/lg_cmake_utils.git
 [submodule "external/srcML"]
 	path = external/srcML
 	url = https://github.com/pthom/srcML.git
