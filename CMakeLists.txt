@@ -35,6 +35,10 @@ find_package(pybind11 CONFIG REQUIRED)
 ####################################################
 # Build libsrcml_caller Bound C++ library
 ####################################################
+if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+    # Fix srcml include path on Linux
+    include_directories("/usr/include/libxml2")
+endif()
 add_subdirectory(external/srcML)
 add_subdirectory(src)
 
