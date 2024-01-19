@@ -39,8 +39,19 @@ skip = ["*i686", "*-musllinux*"]
 # test-skip = ["cp311-musllinux_x86_64"]
 
 # Install dev packages on manylinux:
-before-all = "yum install -y libXcursor-devel libXi-devel libXinerama-devel libXrandr-devel"
-[[tool.cibuildwheel.overrides]]
-# Install dev packages on musllinux (alpine etc):
-select = "*-musllinux*"
-before-all = "apk add xorg-server-dev libxcursor-dev libxi-dev libxinerama-dev libxrandr-dev"
+# Do the equivalent of
+# sudo apt-get update && sudo apt-get install --no-install-recommends -y \
+#    libxml2-dev \
+#    libxml2-utils \
+#    libxslt1-dev \
+#    libarchive-dev \
+#    libssl-dev \
+#    libcurl4-openssl-dev \
+# but with yum
+# also install java
+before-all = "yum install -y libxml2-devel libxslt-devel libarchive-devel openssl-devel libcurl-devel java-1.8.0-openjdk-devel"
+
+#[[tool.cibuildwheel.overrides]]
+## Install dev packages on musllinux (alpine etc):
+#select = "*-musllinux*"
+#before-all = "apk add xorg-server-dev libxcursor-dev libxi-dev libxinerama-dev libxrandr-dev"
