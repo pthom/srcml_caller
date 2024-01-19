@@ -35,23 +35,15 @@ archs = ["x86_64", "arm64"]
 # archs = ["arm64"]
 
 [tool.cibuildwheel.linux]
-skip = ["*i686", "*-musllinux*"]
+skip = ["*i686", "*manylinux*"] # "*-musllinux*"]
 # test-skip = ["cp311-musllinux_x86_64"]
 
 # Install dev packages on manylinux:
-# Do the equivalent of
-# sudo apt-get update && sudo apt-get install --no-install-recommends -y \
-#    libxml2-dev \
-#    libxml2-utils \
-#    libxslt1-dev \
-#    libarchive-dev \
-#    libssl-dev \
-#    libcurl4-openssl-dev \
-# but with yum
-# also install java
 before-all = "yum install -y libxml2-devel libxslt-devel libarchive-devel openssl-devel libcurl-devel java-1.8.0-openjdk-devel"
 
-#[[tool.cibuildwheel.overrides]]
-## Install dev packages on musllinux (alpine etc):
-#select = "*-musllinux*"
-#before-all = "apk add xorg-server-dev libxcursor-dev libxi-dev libxinerama-dev libxrandr-dev"
+[[tool.cibuildwheel.overrides]]
+# Install dev packages on musllinux (alpine etc):
+select = "*-musllinux*"
+# libcurl-dev (no such package)
+before-all = "apk add --no-cache libxml2-dev libxslt-dev libarchive-dev openssl-dev openjdk8 curl-dev"
+
