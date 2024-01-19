@@ -5,6 +5,8 @@ include(litgen_cmake/litgen_setup_module.cmake)
 
 set(CMAKE_CXX_STANDARD 20)
 
+set(SRCML_CALLER_PYTHON ON CACHE BOOL "Build python bindings for srcml_caller" FORCE)
+
 ####################################################
 # Add pybind11
 ####################################################

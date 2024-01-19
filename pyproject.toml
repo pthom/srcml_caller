@@ -22,7 +22,8 @@ profile = "black"
 [tool.cibuildwheel]
 build-verbosity = 1
 # Target python versions:
-build = ["cp311-*", "cp312-*"]
+#build = ["cp311-*", "cp312-*"]
+build = ["cp312-*"]
 # Tests
 test-requires = "pytest"
 test-command = "pytest {project}/tests"
@@ -30,7 +31,8 @@ test-command = "pytest {project}/tests"
 [tool.cibuildwheel.macos]
 # identify whether this is a M1 or intel
 before-build = "uname -a"
-# archs = ["x86_64"]
+archs = ["x86_64", "arm64"]
+# archs = ["arm64"]
 
 [tool.cibuildwheel.linux]
 skip = ["*i686", "*-musllinux*"]
