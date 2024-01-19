@@ -14,3 +14,31 @@ build-backend = "setuptools.build_meta"
 
 [tool.isort]
 profile = "black"
+
+
+#####################################
+# cibuildwheel
+#####################################
+[tool.cibuildwheel]
+build-verbosity = 1
+# Target python versions:
+build = ["cp311-*", "cp312-*"]
+# Tests
+test-requires = "pytest"
+test-command = "pytest {project}/tests"
+
+[tool.cibuildwheel.macos]
+# identify whether this is a M1 or intel
+before-build = "uname -a"
+# archs = ["x86_64"]
+
+[tool.cibuildwheel.linux]
+skip = ["*i686", "*-musllinux*"]
+# test-skip = ["cp311-musllinux_x86_64"]
+
+# Install dev packages on manylinux:
+before-all = "yum install -y libXcursor-devel libXi-devel libXinerama-devel libXrandr-devel"
+[[tool.cibuildwheel.overrides]]
+# Install dev packages on musllinux (alpine etc):
+select = "*-musllinux*"
+before-all = "apk add xorg-server-dev libxcursor-dev libxi-dev libxinerama-dev libxrandr-dev"
