@@ -1,5 +1,4 @@
 pybind11
-litgen @ git+https://github.com/pthom/litgen
 black
 mypy
 pytest
