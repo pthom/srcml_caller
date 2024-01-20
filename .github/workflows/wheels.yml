@@ -53,6 +53,15 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
 
+      - name: install vcpkg on windows
+        if: ${{ matrix.os == 'windows-latest' }}
+        run: |
+          git clone https://github.com/Microsoft/vcpkg.git
+          cd vcpkg
+          .\bootstrap-vcpkg.bat
+          .\vcpkg install libxml2:x64-windows-static libxslt:x64-windows-static
+          .\vcpkg install libxml2:x86-windows-static libxslt:x86-windows-static                                
+
       - uses: pypa/cibuildwheel@v2.16.2
 
       - name: Verify clean directory
