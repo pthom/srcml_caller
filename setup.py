@@ -33,12 +33,16 @@ if sys.platform == "win32":
             git clone https://github.com/Microsoft/vcpkg.git
             .\vcpkg\bootstrap-vcpkg.bat
             .\vcpkg\vcpkg install libxml2:x64-windows-static libxslt:x64-windows-static                                
+            .\vcpkg\vcpkg install libxml2:x86-windows-static libxslt:x86-windows-static                                
         """
         raise RuntimeError(msg)
 
+    is_64_bits = sys.maxsize > 2 ** 32
+    arch_str = "x64" if is_64_bits else "x86" # we do not check for arm64
+
     cmake_args = [
         f"-DCMAKE_TOOLCHAIN_FILE={this_dir}/vcpkg/scripts/buildsystems/vcpkg.cmake",
-        "-DVCPKG_TARGET_TRIPLET=x64-windows-static",
+        f"-DVCPKG_TARGET_TRIPLET={arch_str}-windows-static",
     ]
 else:
     cmake_args = []

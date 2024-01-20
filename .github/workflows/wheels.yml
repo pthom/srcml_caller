@@ -61,7 +61,7 @@ jobs:
           cd vcpkg
           .\bootstrap-vcpkg.bat
           .\vcpkg install libxml2:x64-windows-static libxslt:x64-windows-static
-          
+          .\vcpkg install libxml2:x86-windows-static libxslt:x86-windows-static                                
 
       - uses: pypa/cibuildwheel@v2.16.2
 

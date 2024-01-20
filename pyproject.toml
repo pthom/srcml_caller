@@ -34,6 +34,9 @@ before-build = "uname -a"
 archs = ["x86_64", "arm64"]
 # archs = ["arm64"]
 
+[tool.cibuildwheel.windows]
+archs = ["AMD64", "x86"]
+
 [tool.cibuildwheel.linux]
 skip = ["*i686"] # "*-musllinux*"]
 # test-skip = ["cp311-musllinux_x86_64"]
