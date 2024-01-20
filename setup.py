@@ -50,7 +50,7 @@ else:
 
 setup(
     name="srcml-caller",
-    version="0.1.3",
+    version="0.2.0",
     description="srcml_caller, simple python bindings for srcML ",
     long_description=get_readme(),
     long_description_content_type="text/markdown",

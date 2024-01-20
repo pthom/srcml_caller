@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.17)
-project(srcml_caller VERSION "0.1.3")
+project(srcml_caller VERSION "0.2.0")
 
 include(litgen_cmake/litgen_setup_module.cmake)
 
