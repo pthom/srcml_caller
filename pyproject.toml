@@ -22,8 +22,7 @@ profile = "black"
 [tool.cibuildwheel]
 build-verbosity = 1
 # Target python versions:
-#build = ["cp310-*", "cp311-*", "cp312-*"]
-build = ["cp312-*"]
+build = ["cp310-*", "cp311-*", "cp312-*"]
 # Tests
 test-requires = "pytest"
 test-command = "pytest {project}/tests"
@@ -32,14 +31,12 @@ test-command = "pytest {project}/tests"
 # identify whether this is a M1 or intel
 before-build = "uname -a"
 archs = ["x86_64", "arm64"]
-# archs = ["arm64"]
 
 [tool.cibuildwheel.windows]
 archs = ["AMD64", "x86"]
 
 [tool.cibuildwheel.linux]
-skip = ["*i686"] # "*-musllinux*"]
-# test-skip = ["cp311-musllinux_x86_64"]
+skip = ["*i686"]
 
 # Install dev packages on manylinux:
 before-all = "yum install -y libxml2-devel libxslt-devel libarchive-devel openssl-devel libcurl-devel java-1.8.0-openjdk-devel"
