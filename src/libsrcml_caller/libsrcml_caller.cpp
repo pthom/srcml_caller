@@ -15,7 +15,7 @@
 static std::map<CodeLanguage, std::string> gLanguageTable{
     { CodeLanguage::C, "C" },
     { CodeLanguage::CSharp, "C#"},
-    { CodeLanguage::CPlusCplus, "C++"},
+    { CodeLanguage::CPlusPlus, "C++"},
     { CodeLanguage::Java, "Java"},
     { CodeLanguage::ObjectiveC, "Objective-C"}
 };

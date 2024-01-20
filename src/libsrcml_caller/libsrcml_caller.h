@@ -6,7 +6,7 @@ enum class CodeLanguage
 {
     C = 0,
     CSharp,
-    CPlusCplus,
+    CPlusPlus,
     Java,
     ObjectiveC
 };

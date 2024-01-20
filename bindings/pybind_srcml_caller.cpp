@@ -24,7 +24,7 @@ void py_init_module_lg_srcml_cpp_caller(py::module& m)
     py::enum_<CodeLanguage>(m, "CodeLanguage", py::arithmetic(), "")
         .value("c", CodeLanguage::C, "")
         .value("c_sharp", CodeLanguage::CSharp, "")
-        .value("c_plus_cplus", CodeLanguage::CPlusCplus, "")
+        .value("c_plus_plus", CodeLanguage::CPlusPlus, "")
         .value("java", CodeLanguage::Java, "")
         .value("objective_c", CodeLanguage::ObjectiveC, "");
 
