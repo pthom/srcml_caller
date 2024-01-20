@@ -104,13 +104,13 @@ std::optional<std::string> to_srcml(
 
 std::optional<std::string> cpp_to_srcml(
     const std::string& code,
+    bool include_positions,
     const std::string& encoding_src,
     const std::string& encoding_xml
 )
 {
-    return to_srcml(code, CodeLanguage::CPlusPlus, true, encoding_src, encoding_xml);
+    return to_srcml(code, CodeLanguage::CPlusPlus, include_positions, encoding_src, encoding_xml);
 }
-
 
 //int main()
 //{
