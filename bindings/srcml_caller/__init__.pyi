@@ -9,7 +9,7 @@ import enum
 class CodeLanguage(enum.Enum):
     c = enum.auto()            # (= 0)
     c_sharp = enum.auto()      # (= 1)
-    c_plus_cplus = enum.auto() # (= 2)
+    c_plus_plus = enum.auto() # (= 2)
     java = enum.auto()         # (= 3)
     objective_c = enum.auto()  # (= 4)
 

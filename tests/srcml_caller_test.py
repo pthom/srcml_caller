@@ -11,7 +11,7 @@ def test_code():
     int a = 1;
     """
     xml = srcml_caller.to_srcml(
-        code, srcml_caller.CodeLanguage.c_plus_cplus,
+        code, srcml_caller.CodeLanguage.c_plus_plus,
         encoding_src="utf-8",
         encoding_xml="utf-8"
         )
