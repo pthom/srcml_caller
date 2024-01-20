@@ -1,7 +1,0 @@
-[requires]
-boost/1.80.0
-libxml2/2.10.3
-libxslt/1.1.34
-
-[generators]
-cmake_find_package
