@@ -36,7 +36,7 @@ archs = ["x86_64", "arm64"]
 environment = {MACOSX_DEPLOYMENT_TARGET= "10.15"}
 
 [tool.cibuildwheel.windows]
-archs = ["AMD64", "x86"]
+archs = ["AMD64"]
 
 [tool.cibuildwheel.linux]
 skip = ["*i686"]
