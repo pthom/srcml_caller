@@ -14,7 +14,10 @@ def vcpkg_path():
 
 
 def required_libraries():
-    return ["libxml2", "libxslt", "libarchive"]
+    if platform.system() == "Windows":
+        return ["libxml2", "libxslt"]
+    else:
+        return ["libxml2", "libxslt", "libarchive"]
 
 
 def bootstrap_vcpkg():
