@@ -1,8 +1,6 @@
 # srcml_caller
 
-simple bindings for srcML, when used with C++ code.
-
-Works on linux and MacOS.
+Simple python bindings for [srcML](https://www.srcml.org/).
 
 Provides:
 
@@ -37,9 +35,23 @@ def to_srcml(
     pass
 ````
 
-Based on [scikit_build_example](https://github.com/pybind/scikit_build_example) for [litgen](https://github.com/pthom/litgen)
+# Example usage
 
-# Install instructions
+```
+>>> import srcml_caller
+>>> srcml_caller.to_srcml("void foo(int v);", srcml_caller.CodeLanguage.c_plus_cplus)
+
+'<unit revision="1.0.0" language="C++" pos:tabs="8"><function_decl pos:start="1:1" pos:end="1:16"><type pos:start="1:1" pos:end="1:4"><name pos:start="1:1" pos:end="1:4">void</name></type> <name pos:start="1:6" pos:end="1:8">foo</name><parameter_list pos:start="1:9" pos:end="1:15">(<parameter pos:start="1:10" pos:end="1:14"><decl pos:start="1:10" pos:end="1:14"><type pos:start="1:10" pos:end="1:12"><name pos:start="1:10" pos:end="1:12">int</name></type> <name pos:start="1:14" pos:end="1:14">v</name></decl></parameter>)</parameter_list>;</function_decl></unit>'
+```
+
+# Install instructions (from pypi)
+
+```
+pip install -v srcml_caller
+```
+
+
+# Install instructions (from source)'
 
 ````
 git clone https://github.com/pthom/srcml_caller.git
@@ -47,6 +59,16 @@ cd srcml_caller
 git submodule update --init # will fetch srcML submodule
 pip install -v .
 ````
+
+Note: on windows, you need to first install libxml2 and libxslt with vcpkg, see below:
+```bash
+# inside the srcml_caller directory:
+git clone https://github.com/Microsoft/vcpkg.git
+.\vcpkg\bootstrap-vcpkg.bat
+.\vcpkg\vcpkg install libxml2:x64-windows-static libxslt:x64-windows-static                                
+.\vcpkg\vcpkg install libxml2:x86-windows-static libxslt:x86-windows-static
+```      
+
 
 # Development build instructions
 
@@ -107,7 +129,7 @@ You can also run ci_scripts/install_requirements_ubuntu.sh, which does exactly t
 git submodule update --init
 ````
 
-Unix and MacOS
+### Unix and MacOS
 ````bash
 python3 -m venv venv
 source venv/bin/activate
@@ -117,7 +139,17 @@ cd build
 cmake .. -DPYTHON_EXECUTABLE=../venv/bin/python
 ````
 
-Windows
+### Windows
+
+Please clone vcpkg in the same directory as this project, then install libxml2 and libxslt like this:
+
+```bash
+git clone https://github.com/Microsoft/vcpkg.git
+.\vcpkg\bootstrap-vcpkg.bat
+.\vcpkg\vcpkg install libxml2:x64-windows-static libxslt:x64-windows-static                                
+.\vcpkg\vcpkg install libxml2:x86-windows-static libxslt:x86-windows-static
+```      
+
 ````bash
 python3 -m venv venv
 venv\Scripts\activate

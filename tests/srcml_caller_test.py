@@ -1,9 +1,6 @@
 import srcml_caller
 
 
-def test_version():
-    assert srcml_caller.__version__ == "0.1.3"
-
 def test_code():
     import srcml_caller
     code = """
