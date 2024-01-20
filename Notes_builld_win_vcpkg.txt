@@ -1,0 +1,19 @@
+git clone https://github.com/Microsoft/vcpkg.git
+.\vcpkg\bootstrap-vcpkg.bat
+.\vcpkg\vcpkg install libxml2:x64-windows-static libxslt:x64-windows-static
+
+.\vcpkg\vcpkg install libxml2 libxslt
+
+
+Download java from https://www.java.com/en/download/
+
+Pb: ca build en statique...
+
+
+setup.py:
+
+    cmake_args=[
+        # Specify the toolchain file for vcpkg
+        "-DCMAKE_TOOLCHAIN_FILE=F:/dvp/_Bundle/srcml_caller/vcpkg/scripts/buildsystems/vcpkg.cmake",
+        "-DVCPKG_TARGET_TRIPLET=x64-windows-static"
+    ],
