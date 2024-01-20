@@ -27,21 +27,29 @@ def bootstrap_vcpkg():
 
     print("Bootstrapping vcpkg...")
     if os.name == "nt":
-        os.system("./vcpkg/bootstrap-vcpkg.bat")
+        os.system(".\\vcpkg\\bootstrap-vcpkg.bat")
     else:
         os.system("./vcpkg/bootstrap-vcpkg.sh")
 
 
 def is_inside_cibuildwheel():
-    return os.environ.get("CIBUILDWHEEL") == "1"
+    r = os.environ.get("CIBUILDWHEEL") == "1"
+    print(f"is_inside_cibuildwheel = {r}")
+    return r
 
 
 def cibuildwheel_host_platform():
-    return os.environ.get("_PYTHON_HOST_PLATFORM")
+    r = os.environ.get("_PYTHON_HOST_PLATFORM")
+    if r is None:
+        r = ""
+    print(f"cibuildwheel_host_platform = {r}")
+    return r
 
 
-def cibuildwheel_is_building_arm():
-    return "arm" in cibuildwheel_host_platform()
+def cibuildwheel_is_building_arm():    
+    r = "arm" in cibuildwheel_host_platform()
+    print(f"cibuildwheel_is_building_arm = {r}")
+    return r
 
 
 def shall_build_for_arm():
@@ -74,7 +82,11 @@ def install_vcpkg_packages():
     for library in required_libraries():
         triplet = platform_static_lib_linkage_triplet()
         print(f"Installing {library} for {triplet}...")
-        cmd = f"./vcpkg/vcpkg install {library}:{triplet}"
+        if platform.system() == "Windows":
+            vcpkg_cmd = ".\\vcpkg\\vcpkg.exe"
+        else:
+            vcpkg_cmd = "./vcpkg/vcpkg"
+        cmd = f"{vcpkg_cmd} install {library}:{triplet}"
         print(cmd)
         subprocess.check_call(cmd, shell=True)
 
