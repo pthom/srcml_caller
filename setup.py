@@ -12,7 +12,7 @@ from setuptools import find_packages
 
 
 this_dir = os.path.dirname(__file__)
-repository_dir = os.path.realpath(this_dir + "/../")
+repository_dir = this_dir
 
 def get_readme():
     with open("README.md") as f:
