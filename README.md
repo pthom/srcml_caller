@@ -33,6 +33,15 @@ def to_srcml(
         encoding_xml: str = "utf-8"
 ) -> Optional[str]:
     pass
+
+
+def cpp_to_srcml(
+        code: str,
+        include_positions: bool = True,
+        encoding_src: str = "utf-8",
+        encoding_xml: str = "utf-8"
+) -> Optional[str]:
+    pass
 ````
 
 # Example usage

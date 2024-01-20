@@ -102,6 +102,16 @@ std::optional<std::string> to_srcml(
 }
 
 
+std::optional<std::string> cpp_to_srcml(
+    const std::string& code,
+    const std::string& encoding_src,
+    const std::string& encoding_xml
+)
+{
+    return to_srcml(code, CodeLanguage::CPlusPlus, true, encoding_src, encoding_xml);
+}
+
+
 //int main()
 //{
 //    if (true) // to_srcml
