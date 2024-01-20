@@ -1,4 +1,6 @@
 import sys
+import os
+
 
 try:
     from skbuild import setup
@@ -19,6 +21,29 @@ def get_readme():
     return r
 
 
+# if on windows, set cmake toolchain to use vcpkg
+this_dir = os.path.dirname(os.path.realpath(__file__))
+if sys.platform == "win32":
+    # We could also check that java is installed by checking that "java" is in the path
+
+    if not os.path.isdir(this_dir + "/vcpkg"):
+        msg = """
+        Please clone vcpkg in the same directory as this project, then install libxml2 and libxslt like this:
+        
+            git clone https://github.com/Microsoft/vcpkg.git
+            .\vcpkg\bootstrap-vcpkg.bat
+            .\vcpkg\vcpkg install libxml2:x64-windows-static libxslt:x64-windows-static                                
+        """
+        raise RuntimeError(msg)
+
+    cmake_args = [
+        f"-DCMAKE_TOOLCHAIN_FILE={this_dir}/vcpkg/scripts/buildsystems/vcpkg.cmake",
+        "-DVCPKG_TARGET_TRIPLET=x64-windows-static",
+    ]
+else:
+    cmake_args = []
+
+
 setup(
     name="srcml-caller",
     version="0.1.3",
@@ -36,4 +61,5 @@ setup(
     extras_require={"test": ["pytest"]},
     python_requires=">=3.6",
     install_requires=[],
+    cmake_args=cmake_args,
 )
