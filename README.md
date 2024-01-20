@@ -55,7 +55,7 @@ def cpp_to_srcml(
 
 # Install instructions (from pypi)
 
-```
+```bash
 pip install -v srcml_caller
 ```
 
