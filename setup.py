@@ -1,15 +1,18 @@
 import sys
 import os
+import platform
 
 # add the directory containing this file to the python path
 this_dir = os.path.dirname(__file__)
 sys.path.insert(0, this_dir)
-from ci_scripts import install_requirements_vcpkg
 
 
 from skbuild import setup
 from setuptools import find_packages
 
+
+this_dir = os.path.dirname(__file__)
+repository_dir = os.path.realpath(this_dir + "/../")
 
 def get_readme():
     with open("README.md") as f:
@@ -17,12 +20,27 @@ def get_readme():
     return r
 
 
-install_requirements_vcpkg.bootstrap_vcpkg()
-install_requirements_vcpkg.install_vcpkg_packages()
-cmake_args = install_requirements_vcpkg.vcpkg_cmake_args()
+def vcpkg_cmake_args_cibuildwheel():
+    # Cf .github/workflows/wheels.yml, we only handle those platforms and archs with cibuildwheel
+    if platform.system() == "Linux":
+        return []
 
+    if platform.system() == "Windows":
+        triplet = "x64-windows-static"
+    elif platform.system() == "Darwin":
+        triplet = "arm64-osx"
+    return [
+        f"-DCMAKE_TOOLCHAIN_FILE={repository_dir}/vcpkg/scripts/buildsystems/vcpkg.cmake",
+        f"-DVCPKG_TARGET_TRIPLET={triplet}",
+    ]
+
+
+is_inside_cibuildwheel = os.environ.get("CIBUILDWHEEL") is not None
+if is_inside_cibuildwheel:
+    cmake_args = vcpkg_cmake_args_cibuildwheel()
+else:
+    cmake_args = []
 print("cmake_args", cmake_args)
-# sys.exit(1)
 
 
 setup(

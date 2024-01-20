@@ -39,8 +39,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest]
-#        os: [ubuntu-latest, macos-latest, windows-latest]
+        os: [ubuntu-latest, macos-latest, windows-latest]
 
     steps:
       - uses: actions/checkout@v4
@@ -60,7 +59,14 @@ jobs:
           cd vcpkg
           .\bootstrap-vcpkg.bat
           .\vcpkg install libxml2:x64-windows-static libxslt:x64-windows-static
-          .\vcpkg install libxml2:x86-windows-static libxslt:x86-windows-static                                
+
+      - name: install vcpkg on mac
+        if: ${{ matrix.os == 'macos-latest' }}
+        run: |
+          git clone https://github.com/Microsoft/vcpkg.git
+            cd vcpkg
+            ./bootstrap-vcpkg.sh
+            ./vcpkg install libxml2:arm64-osx libxslt:arm64-osx libarchive:arm64-osx
 
       - uses: pypa/cibuildwheel@v2.16.2
 

@@ -32,7 +32,7 @@ test-command = "pytest {project}/tests"
 [tool.cibuildwheel.macos]
 # identify whether this is a M1 or intel
 before-build = "uname -a"
-archs = ["x86_64", "arm64"]
+archs = ["arm64"]
 environment = {MACOSX_DEPLOYMENT_TARGET= "10.15"}
 
 [tool.cibuildwheel.windows]
