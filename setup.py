@@ -1,17 +1,13 @@
 import sys
 import os
 
+# add the directory containing this file to the python path
+this_dir = os.path.dirname(__file__)
+sys.path.insert(0, this_dir)
+from ci_scripts import install_requirements_vcpkg
 
-try:
-    from skbuild import setup
-except ImportError:
-    print(
-        "Please update pip, you need pip 10 or greater,\n"
-        " or you need to install the PEP 518 requirements in pyproject.toml yourself",
-        file=sys.stderr,
-    )
-    raise
 
+from skbuild import setup
 from setuptools import find_packages
 
 
@@ -21,31 +17,12 @@ def get_readme():
     return r
 
 
-# if on windows, set cmake toolchain to use vcpkg
-this_dir = os.path.dirname(os.path.realpath(__file__))
-if sys.platform == "win32":
-    # We could also check that java is installed by checking that "java" is in the path
+install_requirements_vcpkg.bootstrap_vcpkg()
+install_requirements_vcpkg.install_vcpkg_packages()
+cmake_args = install_requirements_vcpkg.vcpkg_cmake_args()
 
-    if not os.path.isdir(this_dir + "/vcpkg"):
-        msg = """
-        Please clone vcpkg in the same directory as this project, then install libxml2 and libxslt like this:
-        
-            git clone https://github.com/Microsoft/vcpkg.git
-            .\vcpkg\bootstrap-vcpkg.bat
-            .\vcpkg\vcpkg install libxml2:x64-windows-static libxslt:x64-windows-static                                
-            .\vcpkg\vcpkg install libxml2:x86-windows-static libxslt:x86-windows-static                                
-        """
-        raise RuntimeError(msg)
-
-    is_64_bits = sys.maxsize > 2 ** 32
-    arch_str = "x64" if is_64_bits else "x86" # we do not check for arm64
-
-    cmake_args = [
-        f"-DCMAKE_TOOLCHAIN_FILE={this_dir}/vcpkg/scripts/buildsystems/vcpkg.cmake",
-        f"-DVCPKG_TARGET_TRIPLET={arch_str}-windows-static",
-    ]
-else:
-    cmake_args = []
+print("cmake_args", cmake_args)
+# sys.exit(1)
 
 
 setup(
