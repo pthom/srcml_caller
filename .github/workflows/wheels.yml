@@ -69,7 +69,7 @@ jobs:
             ./bootstrap-vcpkg.sh
             ./vcpkg install libxml2:arm64-osx libxslt:arm64-osx libarchive:arm64-osx
 
-      - uses: pypa/cibuildwheel@v2.23.3
+      - uses: pypa/cibuildwheel@v3.0.0
 
       - name: Verify clean directory
         run: git diff --exit-code
