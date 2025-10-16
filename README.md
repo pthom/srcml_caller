@@ -48,7 +48,7 @@ def cpp_to_srcml(
 
 ```
 >>> import srcml_caller
->>> srcml_caller.to_srcml("void foo(int v);", srcml_caller.CodeLanguage.c_plus_cplus)
+>>> srcml_caller.to_srcml("void foo(int v);", srcml_caller.CodeLanguage.c_plus_plus)
 
 '<unit revision="1.0.0" language="C++" pos:tabs="8"><function_decl pos:start="1:1" pos:end="1:16"><type pos:start="1:1" pos:end="1:4"><name pos:start="1:1" pos:end="1:4">void</name></type> <name pos:start="1:6" pos:end="1:8">foo</name><parameter_list pos:start="1:9" pos:end="1:15">(<parameter pos:start="1:10" pos:end="1:14"><decl pos:start="1:10" pos:end="1:14"><type pos:start="1:10" pos:end="1:12"><name pos:start="1:10" pos:end="1:12">int</name></type> <name pos:start="1:14" pos:end="1:14">v</name></decl></parameter>)</parameter_list>;</function_decl></unit>'
 ```
