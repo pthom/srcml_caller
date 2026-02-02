@@ -53,21 +53,54 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
 
+      - name: Cache vcpkg on Windows
+        if: ${{ matrix.os == 'windows-latest' }}
+        uses: actions/cache@v4
+        with:
+          path: |
+            vcpkg
+            !vcpkg/buildtrees
+            !vcpkg/downloads
+          key: ${{ runner.os }}-vcpkg-${{ hashFiles('**/vcpkg.json') }}-libxml2-libxslt-libiconv-x64-static
+          restore-keys: |
+            ${{ runner.os }}-vcpkg-
+
       - name: install vcpkg on windows
         if: ${{ matrix.os == 'windows-latest' }}
         run: |
-          git clone https://github.com/Microsoft/vcpkg.git
+          if (!(Test-Path vcpkg)) {
+            git clone https://github.com/Microsoft/vcpkg.git
+          }
           cd vcpkg
-          .\bootstrap-vcpkg.bat
+          if (!(Test-Path vcpkg.exe)) {
+            .\bootstrap-vcpkg.bat
+          }
           .\vcpkg install libxml2:x64-windows-static libxslt:x64-windows-static libiconv:x64-windows-static
+        shell: pwsh
+
+      - name: Cache vcpkg on macOS
+        if: ${{ matrix.os == 'macos-latest' }}
+        uses: actions/cache@v4
+        with:
+          path: |
+            vcpkg
+            !vcpkg/buildtrees
+            !vcpkg/downloads
+          key: ${{ runner.os }}-vcpkg-${{ hashFiles('**/vcpkg.json') }}-libxml2-libxslt-libarchive-arm64
+          restore-keys: |
+            ${{ runner.os }}-vcpkg-
 
       - name: install vcpkg on mac
         if: ${{ matrix.os == 'macos-latest' }}
         run: |
-          git clone https://github.com/Microsoft/vcpkg.git
-            cd vcpkg
+          if [ ! -d vcpkg ]; then
+            git clone https://github.com/Microsoft/vcpkg.git
+          fi
+          cd vcpkg
+          if [ ! -f vcpkg ]; then
             ./bootstrap-vcpkg.sh
-            ./vcpkg install libxml2:arm64-osx libxslt:arm64-osx libarchive:arm64-osx
+          fi
+          ./vcpkg install libxml2:arm64-osx libxslt:arm64-osx libarchive:arm64-osx
 
       - uses: pypa/cibuildwheel@v3.3.1
 
