@@ -45,7 +45,7 @@ print("cmake_args", cmake_args)
 
 setup(
     name="srcml-caller",
-    version="0.4.0",
+    version="0.5.0",
     description="srcml_caller, simple python bindings for srcML ",
     long_description=get_readme(),
     long_description_content_type="text/markdown",
