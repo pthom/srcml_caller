@@ -40,7 +40,8 @@ archs = ["AMD64"]
 
 [tool.cibuildwheel.linux]
 skip = ["*i686"]
-manylinux-image = "manylinux_2_28"
+manylinux-x86_64-image = "manylinux_2_28"
+manylinux-aarch64-image = "manylinux_2_28"
 
 # Install dev packages on manylinux:
 before-all = "yum install -y libxml2-devel libxslt-devel libarchive-devel openssl-devel libcurl-devel java-1.8.0-openjdk-devel"
