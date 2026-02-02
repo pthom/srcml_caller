@@ -1,8 +1,8 @@
 git clone https://github.com/Microsoft/vcpkg.git
 .\vcpkg\bootstrap-vcpkg.bat
-.\vcpkg\vcpkg install libxml2:x64-windows-static libxslt:x64-windows-static
+.\vcpkg\vcpkg install libxml2:x64-windows-static libxslt:x64-windows-static libiconv:x64-windows-static
 
-.\vcpkg\vcpkg install libxml2 libxslt
+.\vcpkg\vcpkg install libxml2 libxslt libiconv
 
 
 Download java from https://www.java.com/en/download/

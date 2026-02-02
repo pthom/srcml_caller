@@ -74,8 +74,8 @@ Note: on windows, you need to first install libxml2 and libxslt with vcpkg, see 
 # inside the srcml_caller directory:
 git clone https://github.com/Microsoft/vcpkg.git
 .\vcpkg\bootstrap-vcpkg.bat
-.\vcpkg\vcpkg install libxml2:x64-windows-static libxslt:x64-windows-static                                
-.\vcpkg\vcpkg install libxml2:x86-windows-static libxslt:x86-windows-static
+.\vcpkg\vcpkg install libxml2:x64-windows-static libxslt:x64-windows-static libiconv:x64-windows-static
+.\vcpkg\vcpkg install libxml2:x86-windows-static libxslt:x86-windows-static libiconv:x86-windows-static
 ```      
 
 
@@ -155,8 +155,8 @@ Please clone vcpkg in the same directory as this project, then install libxml2 a
 ```bash
 git clone https://github.com/Microsoft/vcpkg.git
 .\vcpkg\bootstrap-vcpkg.bat
-.\vcpkg\vcpkg install libxml2:x64-windows-static libxslt:x64-windows-static                                
-.\vcpkg\vcpkg install libxml2:x86-windows-static libxslt:x86-windows-static
+.\vcpkg\vcpkg install libxml2:x64-windows-static libxslt:x64-windows-static libiconv:x64-windows-static
+.\vcpkg\vcpkg install libxml2:x86-windows-static libxslt:x86-windows-static libiconv:x86-windows-static
 ```      
 
 ````bash

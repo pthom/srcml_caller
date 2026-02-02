@@ -59,7 +59,7 @@ jobs:
           git clone https://github.com/Microsoft/vcpkg.git
           cd vcpkg
           .\bootstrap-vcpkg.bat
-          .\vcpkg install libxml2:x64-windows-static libxslt:x64-windows-static
+          .\vcpkg install libxml2:x64-windows-static libxslt:x64-windows-static libiconv:x64-windows-static
 
       - name: install vcpkg on mac
         if: ${{ matrix.os == 'macos-latest' }}
